@@ -4,17 +4,14 @@ import requests
 import json
 import random
 from replit import db
+from keep_alive import keep_alive
+
 
 """
-  A simple python replit to crowdsource health starter_modalities. To use
-  at the discord prompt type, 
-  $hello - to ping the bot
-  $inspire - to get an inspiring fitness quote
-  any of the words - tired, weak, injured, sleepy, lethargic, slow, no energy or overweight to get some starter_modalities
-  $list <modality> to get all the things you can try
-  $new <modality> to add a new method, e.g. $new exercise dips to add dips to the list
-  $del <modality> <number> to delete one of the methods in the list
+  A simple python replit to crowdsource health starter_modalities. To use see README
+  
 """
+
 my_secret = os.environ['token']
 api_secret = os.environ['rapidapi-key']
 url = os.environ['url']
@@ -121,4 +118,6 @@ async def on_message(message):
     else:
       db["responding"] = False
       await message.channel.send("Responding is off")  
+
+keep_alive()
 client.run(my_secret)
